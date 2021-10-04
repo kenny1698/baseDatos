@@ -39,7 +39,6 @@ contChat.getAll('chat')
     .then((result) =>{
         for (const obj in result) {
             mensajes.push(result[obj])
-            console.log(result[obj])
             }        
     })
     .catch((err) => { console.log(err); throw err })
@@ -61,9 +60,9 @@ io.on('connection',async socket => {
     
     socket.on('mensaje',  data =>  {
         try {
-            const msj = {fecha, mensaje: data}
+            const msj = {fecha, mensaje: JSON.stringify(data)}
             mensajes.push(msj)
-            io.sockets.emit('mensajes', mensajes)
+            io.sockets.emit('mensajes', mensajes) 
             contChat.save(msj, 'chat')
             .then(() => {
                return 

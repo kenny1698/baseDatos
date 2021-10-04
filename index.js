@@ -12,7 +12,7 @@ return
 .catch((err) => { console.log(err); throw err })
   .finally(() => {
     productos.close()
-  })
+  }) 
 
 
 chat.startChat()

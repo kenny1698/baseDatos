@@ -17,11 +17,10 @@ formMensajeChat.addEventListener('submit', e => {
 socket.on('mensajes', cargarChat)
 
 async function cargarChat(msjs){
-    console.log(msjs)
     const mensajesHTML = msjs
-        .map(msj => `<label style="font-weight: bold; color:Blue;">${msj.mensaje.email}</label>
+        .map(msj => `<label style="font-weight: bold; color:Blue;">${JSON.parse(msj.mensaje).email}</label>
         <label style="font-style: normal; color:Brown;">[${msj.fecha}] </label>
-        <label style="font-style: italic; color:Green;">${msj.mensaje.chat} </label>`)
+        <label style="font-style: italic; color:Green;">${JSON.parse(msj.mensaje).chat} </label>`)
         .join('<br>')
     document.getElementById('chatMensajes').innerHTML = mensajesHTML
     chat.value =""    
